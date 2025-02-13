@@ -1,4 +1,4 @@
-let likesData = {}; // Use an object to store likes
+let likesData = JSON.parse(localStorage.getItem('likesData')) || {}; // Use an object to store likes
 let likeCount = 0;
 
 // DOM Elements
@@ -34,4 +34,5 @@ likeButton.addEventListener('click', () => {
 
     // Update like count
     likeCountDisplay.textContent = likeCount;
+    localStorage.setItem('likesData', JSON.stringify(likesData));
 });
