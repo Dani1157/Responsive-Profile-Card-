@@ -1,4 +1,4 @@
-[Live Project on GitHub](https://dani1157.github.io/profile-card/)
+[Live Project on GitHub](https://dani1157.github.io/Responsive-Profile-Card-/)
 
 # Profile Card UI Design
 
