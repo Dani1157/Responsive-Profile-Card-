@@ -16,32 +16,33 @@ function generateUserId() {
 
 let userId = generateUserId(); // Get or generate a unique user ID
 
-// Current user's like status
-let hasLiked = likesData[userId] === true; // Check if the user has liked
+// Function to initialize like state
+function initializeLikeState() {
+    let hasLiked = likesData[userId] === true; // Check if the user has liked
+    let likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Count the total number of likes
 
-// Initialize like count (total likes from all users)
-let likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Count the total number of likes
+    // Set initial UI state
+    likeButton.textContent = hasLiked ? 'unlike' : 'like';
+    likeCountDisplay.textContent = likeCount;
+}
 
-// Set initial UI state
-likeButton.textContent = hasLiked ? 'unlike' : 'like';
-likeCountDisplay.textContent = likeCount;
+// Call the function to set initial state
+initializeLikeState();
 
 // Event listener for the like button
 likeButton.addEventListener('click', () => {
-    if (!hasLiked) {
+    if (!likesData[userId]) {
         // User is liking for the first time
         likesData[userId] = true; // Mark this user as liked
-        hasLiked = true;
         likeButton.textContent = 'unlike';
     } else {
         // User is unliking
         delete likesData[userId]; // Remove the user's like
-        hasLiked = false;
         likeButton.textContent = 'like';
     }
 
     // Update like count
-    likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Recalculate like count
+    let likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Recalculate like count
     likeCountDisplay.textContent = likeCount;
 
     // Store the updated likes data in localStorage
