@@ -1,36 +1,39 @@
-let likesData = JSON.parse(localStorage.getItem('likesData')) || {};
-let likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Count the total number of likes
-
-// DOM Elements
+// Get references to the DOM elements
 const likeButton = document.getElementById('like-button');
 const likeCountDisplay = document.getElementById('like-count');
 
-function initializeLikeState() {
-    let hasLiked = likesData['user'] === true; // Check if the user has liked
+// Initialize like count and like status
+let likeCount = Number(localStorage.getItem('likeCount')) || 0; // Get likeCount from localStorage or default to 0
+let hasLiked = (localStorage.getItem('hasLiked') === 'true'); // Get hasLiked from localStorage or default to false
 
-    // Set initial UI state
-    likeButton.textContent = hasLiked ? 'unlike' : 'like';
-    likeCountDisplay.textContent = likeCount;
+// Set initial UI state
+if (hasLiked) {
+    likeButton.textContent = 'unlike'; // If liked, set button text to 'unlike'
 }
 
-// Call the function to set initial state
-initializeLikeState();
+// Update display with the stored like count
+likeCountDisplay.textContent = likeCount;
 
 // Event listener for the like button
 likeButton.addEventListener('click', () => {
-    if (!likesData['user']) {
+    if (!hasLiked) {
         // User is liking for the first time
-        likesData['user'] = true; // Mark this user as liked
-        likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Recalculate like count
-        likeButton.textContent = 'unlike';
+        likeCount++;
+        hasLiked = true;
+        likeButton.textContent = 'unlike'; // Change button text
     } else {
         // User is unliking
-        delete likesData['user']; // Remove the user's like
-        likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Recalculate like count
-        likeButton.textContent = 'like';
+        if (likeCount > 0) { // Prevent negatives
+            likeCount--;
+        }
+        hasLiked = false;
+        likeButton.textContent = 'like'; // Change button text back
     }
 
-    // Update like count
+    // Update the display
     likeCountDisplay.textContent = likeCount;
-    localStorage.setItem('likesData', JSON.stringify(likesData));
+
+    // Store the like status and count in localStorage
+    localStorage.setItem('likeCount', likeCount);
+    localStorage.setItem('hasLiked', hasLiked);
 });
