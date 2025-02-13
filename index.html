@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card UI Design</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="A simple profile card UI design.">
+</head>
+
+<body>
+    <div class="profile-card">
+        <div class="image">
+            <img src="assets/images/me.jpg" alt="profile picture" class="profile-img">
+        </div>
+        <div class="text-data">
+            <span class="name">Dani Dudley</span>
+            <span class="job">Frontend Developer</span>
+        </div>
+        <div class="social">
+            <a href="https://www.instagram.com/naenae_nene_6545?igsh=NHF6MHZwajlqZWYw" title="instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/daniel34241510?s=09" title="x" target="_blank" aria-label="X (formerly Twitter)"><i class="fab fa-twitter"></i></a>
+            <a href="https://youtube.com/@user-ss6sw3lx8y?si=Ql9l90zxOFIzH_mw" title="youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://github.com/Dani1157" title="github" target="_blank" aria-label="GitHub"><i class="fab fa-github-alt"></i></a>
+        </div>
+        <div class="buttons">
+            <button class="button" id="like-button">like</button>
+            <button class="button">message</button>
+        </div>
+        <div class="analytics">
+            <div class="data">
+                <i class="bx bx-heart"></i>
+                <span class="number" id="like-count">0</span> <!-- Starting count -->
+            </div>
+            <div class="data">
+                <i class="bx bx-message-rounded"></i>
+                <span class="number">20k</span>
+            </div>
+            <div class="data">
+                <i class="bx bx-share"></i>
+                <span class="number">12k</span>
+            </div>
+        </div>
+    </div>
+    <script src="assets/likes.js/likes.js"></script>
+</body>
+
+</html>
