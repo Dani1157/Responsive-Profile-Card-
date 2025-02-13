@@ -1,14 +1,12 @@
-let likesData = JSON.parse(localStorage.getItem('likesData')) || {}; // Use an object to store likes
-let likeCount = 0;
+let likesData = JSON.parse(localStorage.getItem('likesData')) || {};
+let likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Count the total number of likes
 
 // DOM Elements
 const likeButton = document.getElementById('like-button');
 const likeCountDisplay = document.getElementById('like-count');
 
-// Function to initialize like state
 function initializeLikeState() {
     let hasLiked = likesData['user'] === true; // Check if the user has liked
-    likeCount = Object.keys(likesData).filter(key => likesData[key] === true).length; // Count the total number of likes
 
     // Set initial UI state
     likeButton.textContent = hasLiked ? 'unlike' : 'like';
